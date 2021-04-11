@@ -33,7 +33,7 @@
     "package-cost": "bin"
   },
   "scripts": {
-    "test": "node ."
+    "test": "node bin"
   },
   "dependencies": {
     "gunzip-maybe": "^1.4.2",
