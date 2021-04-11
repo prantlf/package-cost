@@ -1,6 +1,6 @@
 {
   "name": "package-cost",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Gets tarball and unpacked sizes of NPM packages including its dependencies.",
   "homepage": "https://github.com/prantlf/package-cost#readme",
   "author": {
@@ -26,7 +26,8 @@
     "node": ">=12"
   },
   "files": [
-    "bin", "help.js"
+    "bin",
+    "help.js"
   ],
   "bin": {
     "package-cost": "bin"
