@@ -26,10 +26,10 @@
     "node": ">=12"
   },
   "files": [
-    "index.js", "help.js"
+    "bin", "help.js"
   ],
   "bin": {
-    "package-cost": "index.js"
+    "package-cost": "bin"
   },
   "scripts": {
     "test": "node ."

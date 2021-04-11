@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { argv } = process
 const refs = []
 let concurrency = 20
