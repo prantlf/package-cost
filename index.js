@@ -6,7 +6,6 @@ const https = require('https')
 const gunzip = require('gunzip-maybe')
 const tar = require('tar-stream')
 const { Writable } = require('stream')
-const { promisify } = require('util')
 const { keys } = Object
 const { push } = Array.prototype
 const print = process.stdout.write.bind(process.stdout)
@@ -17,89 +16,98 @@ function log(text) {
   if (verbose) print(text)
 }
 
-const loadNpm = promisify(function (callback) {
-  npm.load({ loaded: false }, err => {
-    if (err) callback(err)
-    else callback()
+function loadNpm() {
+  return new Promise((resolve, reject) => {
+    npm.load({ loaded: false }, err => {
+      if (err) reject(err)
+      else resolve()
+    })
   })
-})
+}
 
-const inspectPkg = promisify(function (ref, callback) {
-  const git = ref.indexOf('@git')
-  if (git > 0) {
-    const cutRef = ref.substr(0, git)
-    log(`  Using ${cutRef} instead of ${ref}\n`)
-    ref = cutRef
-  }
-  const id = refCache[ref]
-  if (id) return callback(null, pkgCache[id])
-  log(`    npm v ${ref}\n`)
-  npm.commands.v([ref], (err, data) => {
-    if (err) callback(err)
+function inspectPkg(ref) {
+  return new Promise((resolve, reject) => {
+    const git = ref.indexOf('@git')
+    if (git > 0) {
+      const cutRef = ref.substr(0, git)
+      log(`  Using ${cutRef} instead of ${ref}\n`)
+      ref = cutRef
+    }
+    const id = refCache[ref]
+    if (id) resolve(pkgCache[id])
     else {
-      const versions = keys(data)
-      const { name, version, dist, dependencies = {} } = data[versions[versions.length - 1]]
-      const { tarball, unpackedSize } = dist
-      callback(null, { name, version, tarball, unpackedSize, dependencies })
+      log(`    npm v ${ref}\n`)
+      npm.commands.v([ref], (err, data) => {
+        if (err) reject(err)
+        else {
+          const versions = keys(data)
+          const { name, version, dist, dependencies = {} } = data[versions[versions.length - 1]]
+          const { tarball, unpackedSize } = dist
+          resolve({ name, version, tarball, unpackedSize, dependencies })
+        }
+      })
     }
   })
-})
+}
 
-const makeRequest = promisify(function (method, url, callback) {
-  log(`    ${method} ${url}\n`)
-  const proto = url.startsWith('http:') ? http : https
-  const req = proto
-    .request(url, { method })
-    .on('response', res => {
-      const { statusCode, statusMessage, headers } = res
-      if (statusCode === 200) {
-        callback(null, res)
-      } else if (statusCode >= 300 && statusCode < 400) {
-        res.resume()
-        makeRequest(method, headers.location, callback)
-      } else {
-        callback(new Error(`${url}: ${statusCode} ${statusMessage}`))
-      }
-    })
-    .on('timeout', function () {
-      req.abort()
-      callback(new Error(`${url}: timeout`))
-    })
-    .on('error', callback)
-  req.end()
-})
+function makeRequest(method, url) {
+  return new Promise((resolve, reject) => {
+    log(`    ${method} ${url}\n`)
+    const proto = url.startsWith('http:') ? http : https
+    const req = proto
+      .request(url, { method })
+      .on('response', res => {
+        const { statusCode, statusMessage, headers } = res
+        if (statusCode === 200) resolve(res)
+        else if (statusCode >= 300 && statusCode < 400) {
+          res.resume()
+          makeRequest(method, headers.location, callback).then(resolve, reject)
+        } else reject(new Error(`${url}: ${statusCode} ${statusMessage}`))
+      })
+      .on('timeout', function () {
+        req.abort()
+        reject(new Error(`${url}: timeout`))
+      })
+      .on('error', reject)
+    req.end()
+  })
+}
 
-const measureResponse = promisify(function (res, callback) {
-  let sum = 0
-  const extract = tar
-    .extract()
-    .on('entry', ({ size }, stream, next) => {
-      sum += size
-      stream.resume()
-      next()
-    })
-    .on('finish', () => callback(null, sum))
-    .on('error', callback)
-  res
-    .on('error', callback)
-    .pipe(gunzip())
-    .on('error', callback)
-    .pipe(extract)
-    .on('error', callback)
-})
+function measureResponse(res) {
+  return new Promise((resolve, reject) => {
+    let sum = 0
+    const extract = tar
+      .extract()
+      .on('entry', ({ size }, stream, next) => {
+        sum += size
+        stream.resume()
+        next()
+      })
+      .on('finish', () => resolve(sum))
+      .on('error', reject)
+    res
+      .on('error', reject)
+      .pipe(gunzip())
+      .on('error', reject)
+      .pipe(extract)
+      .on('error', reject)
+  })
+}
 
 async function inspectTarball(pkg) {
   let { tarball, tarballSize } = pkg
-  if (tarballSize) return
-  const { headers } = await makeRequest('HEAD', tarball)
-  pkg.tarballSize = +headers['content-length']
+  if (!tarballSize) {
+    const { headers } = await makeRequest('HEAD', tarball)
+    pkg.tarballSize = +headers['content-length']
+  }
 }
 
 async function analyseTarball(pkg) {
   const { tarball, unpackedSize } = pkg
-  if (unpackedSize) return
-  const res = await makeRequest('GET', tarball)
-  pkg.unpackedSize = await measureResponse(res)
+  if (!unpackedSize) {
+    const res = await makeRequest('GET', tarball)
+    pkg.unpackedSize = await measureResponse(res)
+  }
 }
 
 async function inspectDeps(refs, pkgs, dependencies) {
