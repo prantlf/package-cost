@@ -1,5 +1,9 @@
 # Changes
 
+## 0.2.0
+
+Add typings.
+
 ## 0.1.0
 
 Expose the package size estimation method as an API.
