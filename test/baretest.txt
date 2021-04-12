@@ -1,0 +1,21 @@
+  Loading npm
+  Inspecting baretest@2.0.0
+    npm v baretest@2.0.0
+  Tracking dependencies
+    npm v barecolor@1.0.1
+  Found 1 dependency
+  Getting tarball sizes
+    HEAD https://registry.npmjs.org/baretest/-/baretest-2.0.0.tgz
+    HEAD https://registry.npmjs.org/barecolor/-/barecolor-1.0.1.tgz
+  Completing unpacked sizes
+  Inspecting barecolor@1.0.1
+  Tracking dependencies
+  Found 0 dependencies
+  Getting tarball sizes
+  Completing unpacked sizes
+  Inspecting baretest@2.0.0
+  Tracking dependencies
+  Found 1 dependency
+  Getting tarball sizes
+  Completing unpacked sizes
+[{"name":"baretest","version":"2.0.0","tarballSize":6570,"unpackedSize":14958,"depCount":1},{"name":"barecolor","version":"1.0.1","tarballSize":1777,"unpackedSize":3279,"depCount":0},{"name":"baretest","version":"2.0.0","tarballSize":6570,"unpackedSize":14958,"depCount":1}]

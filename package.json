@@ -26,15 +26,24 @@
     "node": ">=12"
   },
   "files": [
-    "bin",
-    "index.js",
-    "help.js"
+    "lib"
   ],
   "bin": {
-    "package-cost": "bin"
+    "package-cost": "lib/bin.js"
   },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "test": "node bin"
+    "test": "mkdir -p test/actual && c8 node lib/bin && c8 --no-clean node lib/bin -V && c8 --no-clean node lib/bin -h && c8 --no-clean node lib/bin -x || c8 --no-clean node lib/bin -c c || c8 --no-clean node lib/bin @prantlf/none || c8 --no-clean node lib/bin -v @prantlf/none || c8 --no-clean node lib/bin janadom@0.1.2 > test/actual/janadom.txt && c8 --no-clean node lib/bin -j -v -c 5 baretest@2.0.0 barecolor@1.0.1 baretest@2.0.0 > test/actual/baretest.txt && c8 --no-clean node lib/bin -v test@0.6.0 > test/actual/test.txt && c8 --no-clean node lib/bin.js janadom@git+https://github.com/prantlf/janadom.git && diff -q test/janadom.txt test/actual/janadom.txt && diff -q test/baretest.txt test/actual/baretest.txt && diff -q test/test.txt test/actual/test.txt && c8 --no-clean node test/test && c8 report -r text && c8 check-coverage"
+  },
+  "c8": {
+    "reporter": [
+      "lcov"
+    ],
+    "branches": 100,
+    "lines": 100,
+    "functions": 100,
+    "statements": 100
   },
   "dependencies": {
     "gunzip-maybe": "^1.4.2",
@@ -49,5 +58,8 @@
     "package",
     "size",
     "cost"
-  ]
+  ],
+  "devDependencies": {
+    "c8": "^7.7.1"
+  }
 }

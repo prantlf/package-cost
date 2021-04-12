@@ -1,0 +1,13 @@
+  Loading npm
+  Inspecting test@0.6.0
+    npm v test@0.6.0
+  Tracking dependencies
+    npm v ansi-font@0.0.2
+  Found 1 dependency
+  Getting tarball sizes
+    HEAD https://registry.npmjs.org/test/-/test-0.6.0.tgz
+    HEAD https://registry.npmjs.org/ansi-font/-/ansi-font-0.0.2.tgz
+  Completing unpacked sizes
+    GET https://registry.npmjs.org/test/-/test-0.6.0.tgz
+    GET https://registry.npmjs.org/ansi-font/-/ansi-font-0.0.2.tgz
+test@0.6.0: 1 dependency, 0.16 MiB tarball, 1.64 MiB unpacked

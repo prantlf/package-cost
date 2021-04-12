@@ -1,0 +1,1 @@
+janadom@0.1.2: 0 dependencies, 12.40 KiB tarball, 63.92 KiB unpacked
