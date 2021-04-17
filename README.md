@@ -5,21 +5,24 @@
 [![Dependency Status](https://david-dm.org/prantlf/package-cost.svg)](https://david-dm.org/prantlf/package-cost)
 [![devDependency Status](https://david-dm.org/prantlf/package-cost/dev-status.svg)](https://david-dm.org/prantlf/package-cost#info=devDependencies)
 
-Gets tarball and unpacked sizes of NPM packages including its dependencies.
+Gets NPM package size - packed, unpacked and script bundle - including dependencies recursively. See [details about the sizes](#how-it-works).
 
 ## Synopsis
 
 ```txt
 $ package-cost plural-rules fast-plural-rules
 
-plural-rules@1.0.1: 0 dependencies, 52.89 KiB tarball, 0.29 MiB unpacked
-fast-plural-rules@1.0.1: 0 dependencies, 27.36 KiB tarball, 0.13 MiB unpacked
+plural-rules@1.0.1:      0 dependencies, 52.89 KiB packed, 0.29 MiB unpacked,
+                         20.58 KiB bundled, 17.15 KiB minified
+fast-plural-rules@1.0.1: 0 dependencies, 27.36 KiB packed, 0.13 MiB unpacked,
+                         7.96 KiB bundled, 3.64 KiB minified
 ```
 
 ```js
-const estimatePkgs = require('package-cost')
-const pkgs = await estimatePkgs(['janadom@^0.1.0'])
-// [{name:"janadom",version:"0.1.2",tarballSize:12702,unpackedSize:65449,depCount:0}]
+const estimatePkgSizes = require('package-cost')
+const pkgs = await estimatePkgSizes(['janadom@^0.1.0'])
+// [{"name":"janadom","version":"0.1.2","tarSize":12702,"rawSize":65449,
+//   "bundleSize":3815,"miniSize":2410,"depCount":0}]
 ```
 
 ## Installation
@@ -53,11 +56,11 @@ pnpm i package-cost
 
     Examples:
       package-cost plural-rules fast-plural-rules
-      package-cost -v 'build-number-generator@^1.0.0'
+      package-cost -jv 'build-number-generator@^1.0.0'
 
 ## API
 
-### estimatePkgs(refs, options)
+### estimatePkgSizes(refs, options)
 
 Returns an array of `pkg` objects with information about the NPM packages.
 
@@ -79,9 +82,30 @@ A `pkg` object includes the following properties:
 
 * `name`: name of the package (string)
 * `version`: version of the package (string)
-* `tarballSize`: size of the package tarball in bytes (integer)
-* `unpackedSize`: size of the unpacked package in bytes (integer)
+* `tarSize`: size of the (packed) package tarball in bytes (integer)
+* `rawSize`: size of the unpacked package in bytes (integer)
+* `bundleSize`: size of the main exported script with all dependencies (integer)
+* `miniSize`: the same as `bundleSize` but after minifying the script (integer)
 * `depCount`: count of the package dependencies (integer)
+
+There are [details about the sizes](#how-it-works) below.
+
+## How It Works
+
+NPM packages can be specified in any format that is recognised by `npm v`. They are processed by the following operations:
+
+1. Request the information about the NPM package by `npm v`.
+2. Continue requesting the package information for the dependencies of the specified package and that recursively for the whole dependency tree.
+3. Collect sizes of tarballs for all requested NPM packages.
+4. Stream the tarballs from the network to memory, compute their unpacked sizes and store JavaScript and JSON files in memory.
+5. Run a JavaScript bundler against the main exported module of the initially specified package and compute the bundle raw and minified sizes.
+
+Collected sizes have the following meaning:
+
+* `tarSize`: Download size of the package including its dependencies. Measures the project installation overhead. Important for often build container starting in CI/CD pipelines.
+* `rawSize`: Unpacked size of the package including its dependencies. Measures the disk space overhead. Important for often container starting in CI/CD pipelines.
+* `bundleSize`: Size of the JavaScript bundle concatenated from the main package export and all its dependencies followed recursively. Measures the amount of JavaScript to be parsed. Important for the page loading performance.
+* `miniSize`: the same as `bundleSize` but after minifying the JavaScript bundle (integer)
 
 ## Contributing
 

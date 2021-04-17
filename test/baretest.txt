@@ -1,21 +1,38 @@
-  Loading npm
-  Inspecting baretest@2.0.0
-    npm v baretest@2.0.0
-  Tracking dependencies
-    npm v barecolor@1.0.1
-  Found 1 dependency
-  Getting tarball sizes
-    HEAD https://registry.npmjs.org/baretest/-/baretest-2.0.0.tgz
-    HEAD https://registry.npmjs.org/barecolor/-/barecolor-1.0.1.tgz
-  Completing unpacked sizes
-  Inspecting barecolor@1.0.1
-  Tracking dependencies
-  Found 0 dependencies
-  Getting tarball sizes
-  Completing unpacked sizes
-  Inspecting baretest@2.0.0
-  Tracking dependencies
-  Found 1 dependency
-  Getting tarball sizes
-  Completing unpacked sizes
-[{"name":"baretest","version":"2.0.0","tarballSize":6570,"unpackedSize":14958,"depCount":1},{"name":"barecolor","version":"1.0.1","tarballSize":1777,"unpackedSize":3279,"depCount":0},{"name":"baretest","version":"2.0.0","tarballSize":6570,"unpackedSize":14958,"depCount":1}]
+[deps]  found 0 dependencies
+[deps]  found 1 dependency
+[deps]  found 1 dependency
+[deps]  inspected barecolor@1.0.1 (index.js)
+[deps]  tracking dependencies
+[deps]  tracking dependencies
+[deps]  tracking dependencies
+[dist]  computing bundle sizes
+[dist]  computing bundle sizes
+[dist]  including barecolor@1.0.1:index.js
+[dist]  including barecolor@1.0.1:index.js
+[dist]  including baretest@2.0.0:baretest.js
+[http]  https://registry.npmjs.org/barecolor/-/barecolor-1.0.1.tgz
+[http]  https://registry.npmjs.org/baretest/-/baretest-2.0.0.tgz
+[init]    barecolor@1.0.1
+[init]  inspected baretest@2.0.0 (baretest)
+[init]  inspecting barecolor@1.0.1
+[init]  inspecting baretest@2.0.0
+[init]  inspecting baretest@2.0.0
+[pack]  analysing tarballs
+[pack]  analysing tarballs
+[pack]  analysing tarballs
+[pack]  barecolor@1.0.1: 1.74 KiB packed, 3.20 KiB unpacked, 2 scripts
+[pack]  baretest@2.0.0: 4.68 KiB packed, 11.41 KiB unpacked, 6 scripts
+[pack]  collecting barecolor@1.0.1:index.js
+[pack]  collecting barecolor@1.0.1:package.json
+[pack]  collecting baretest@2.0.0:baretest.js
+[pack]  collecting baretest@2.0.0:benchmarks/baretest.js
+[pack]  collecting baretest@2.0.0:benchmarks/jest.test.js
+[pack]  collecting baretest@2.0.0:benchmarks/sum.js
+[pack]  collecting baretest@2.0.0:package.json
+[pack]  collecting baretest@2.0.0:test/index.js
+[pack]  ignoring barecolor@1.0.1:package/LICENSE
+[pack]  ignoring barecolor@1.0.1:package/README.md
+[pack]  ignoring baretest@2.0.0:package/LICENSE
+[pack]  ignoring baretest@2.0.0:package/README.md
+[pack]  ignoring baretest@2.0.0:package/benchmarks/compare.yml
+[{"name":"baretest","version":"2.0.0","tarSize":6570,"rawSize":14958,"bundleSize":2051,"miniSize":1052,"depCount":1},{"name":"barecolor","version":"1.0.1","tarSize":1777,"rawSize":3279,"bundleSize":699,"miniSize":383,"depCount":0},{"name":"baretest","version":"2.0.0","tarSize":6570,"rawSize":14958,"bundleSize":2051,"miniSize":383,"depCount":1}]

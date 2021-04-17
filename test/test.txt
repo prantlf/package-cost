@@ -1,13 +1,67 @@
-  Loading npm
-  Inspecting test@0.6.0
-    npm v test@0.6.0
-  Tracking dependencies
-    npm v ansi-font@0.0.2
-  Found 1 dependency
-  Getting tarball sizes
-    HEAD https://registry.npmjs.org/test/-/test-0.6.0.tgz
-    HEAD https://registry.npmjs.org/ansi-font/-/ansi-font-0.0.2.tgz
-  Completing unpacked sizes
-    GET https://registry.npmjs.org/test/-/test-0.6.0.tgz
-    GET https://registry.npmjs.org/ansi-font/-/ansi-font-0.0.2.tgz
-test@0.6.0: 1 dependency, 0.16 MiB tarball, 1.64 MiB unpacked
+[deps]  found 1 dependency
+[deps]  inspected ansi-font@0.0.2 (index.js)
+[deps]  tracking dependencies
+[dist]  computing bundle sizes
+[dist]  including ansi-font@0.0.2:index.js
+[dist]  including test@0.6.0:assert.js
+[dist]  including test@0.6.0:logger.js
+[dist]  including test@0.6.0:test.js
+[dist]  including test@0.6.0:utils.js
+[http]  https://registry.npmjs.org/ansi-font/-/ansi-font-0.0.2.tgz
+[http]  https://registry.npmjs.org/test/-/test-0.6.0.tgz
+[init]    ansi-font@0.0.2
+[init]  inspected test@0.6.0 (test.js)
+[init]  inspecting test@0.6.0
+[pack]  analysing tarballs
+[pack]  ansi-font@0.0.2: 10.00 KiB packed, 17.11 KiB unpacked, 2 scripts
+[pack]  collecting ansi-font@0.0.2:index.js
+[pack]  collecting ansi-font@0.0.2:package.json
+[pack]  collecting test@0.6.0:assert.js
+[pack]  collecting test@0.6.0:logger.js
+[pack]  collecting test@0.6.0:package.json
+[pack]  collecting test@0.6.0:test.js
+[pack]  collecting test@0.6.0:test/assert.js
+[pack]  collecting test@0.6.0:test/async.js
+[pack]  collecting test@0.6.0:test/custom-asserts.js
+[pack]  collecting test@0.6.0:test/fail-fast.js
+[pack]  collecting test@0.6.0:test/index.js
+[pack]  collecting test@0.6.0:test/utils/logger.js
+[pack]  collecting test@0.6.0:utils.js
+[pack]  ignoring ansi-font@0.0.2:package/.Readme.md.un~
+[pack]  ignoring ansi-font@0.0.2:package/.index.js.un~
+[pack]  ignoring ansi-font@0.0.2:package/.package.json.un~
+[pack]  ignoring ansi-font@0.0.2:package/History.md
+[pack]  ignoring ansi-font@0.0.2:package/Readme.md
+[pack]  ignoring test@0.6.0:package/.History.md.un~
+[pack]  ignoring test@0.6.0:package/.Readme.md.un~
+[pack]  ignoring test@0.6.0:package/.ansi-font.js.un~
+[pack]  ignoring test@0.6.0:package/.assert.js.un~
+[pack]  ignoring test@0.6.0:package/.gitmodules
+[pack]  ignoring test@0.6.0:package/.index.js.un~
+[pack]  ignoring test@0.6.0:package/.log.js.un~
+[pack]  ignoring test@0.6.0:package/.logger-browser.js.un~
+[pack]  ignoring test@0.6.0:package/.logger.js.un~
+[pack]  ignoring test@0.6.0:package/.package.json.un~
+[pack]  ignoring test@0.6.0:package/.suite.js.un~
+[pack]  ignoring test@0.6.0:package/.test.js.un~
+[pack]  ignoring test@0.6.0:package/.tests.js.un~
+[pack]  ignoring test@0.6.0:package/.travis.yml
+[pack]  ignoring test@0.6.0:package/.unit.js.un~
+[pack]  ignoring test@0.6.0:package/.utils.js.un~
+[pack]  ignoring test@0.6.0:package/History.md
+[pack]  ignoring test@0.6.0:package/License.md
+[pack]  ignoring test@0.6.0:package/Readme.md
+[pack]  ignoring test@0.6.0:package/test/.all.js.un~
+[pack]  ignoring test@0.6.0:package/test/.assert.js.un~
+[pack]  ignoring test@0.6.0:package/test/.async.js.un~
+[pack]  ignoring test@0.6.0:package/test/.browser.js.un~
+[pack]  ignoring test@0.6.0:package/test/.custom-asserts.js.un~
+[pack]  ignoring test@0.6.0:package/test/.fail-fast.js.un~
+[pack]  ignoring test@0.6.0:package/test/.index.html.un~
+[pack]  ignoring test@0.6.0:package/test/.index.js.un~
+[pack]  ignoring test@0.6.0:package/test/.test-browser.js.un~
+[pack]  ignoring test@0.6.0:package/test/.test-node.js.un~
+[pack]  ignoring test@0.6.0:package/test/utils/.assert-report.js.un~
+[pack]  ignoring test@0.6.0:package/test/utils/.logger.js.un~
+[pack]  test@0.6.0: 0.15 MiB packed, 1.62 MiB unpacked, 11 scripts
+test@0.6.0: 1 dependency, 0.16 MiB packed, 1.64 MiB unpacked, 17.99 KiB bundled, 7.62 KiB minified

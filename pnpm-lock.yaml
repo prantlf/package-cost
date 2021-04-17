@@ -2,10 +2,12 @@ lockfileVersion: 5.3
 
 specifiers:
   c8: ^7.7.1
+  esbuild: ^0.11.12
   gunzip-maybe: ^1.4.2
   tar-stream: ^2.2.0
 
 dependencies:
+  esbuild: 0.11.12
   gunzip-maybe: 1.4.2
   tar-stream: 2.2.0
 
@@ -162,6 +164,12 @@ packages:
     resolution: {integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==}
     dependencies:
       once: 1.4.0
+    dev: false
+
+  /esbuild/0.11.12:
+    resolution: {integrity: sha512-c8cso/1RwVj+fbDvLtUgSG4ZJQ0y9Zdrl6Ot/GAjyy4pdMCHaFnDMts5gqFnWRPLajWtEnI+3hlET4R9fVoZng==}
+    hasBin: true
+    requiresBuild: true
     dev: false
 
   /escalade/3.1.1:

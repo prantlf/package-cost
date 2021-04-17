@@ -1,8 +1,10 @@
 export interface Pkg {
   name: string
   version: string
-  tarballSize: integer
-  unpackedSize: integer
+  tarSize: integer
+  rawSize: integer
+  bundleSize: integer
+  miniSize: integer
   depCount: integer
 }
 
@@ -12,4 +14,4 @@ export interface Opts {
   verbose?: boolean
 }
 
-export default function estimatePkgs(refs: string[], opts?: Opts): Promise<Pkg[]>
+export default function estimatePkgSizes(refs: string[], opts?: Opts): Promise<Pkg[]>

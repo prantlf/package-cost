@@ -8,8 +8,8 @@
       "name": "run",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/index.js",
-      "args": ["barecolor", "baretest"],
+      "program": "${workspaceFolder}/lib/bin.js",
+      "args": ["marko"],
       "skipFiles": [
         "<node_internals>/**"
       ]
