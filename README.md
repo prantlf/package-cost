@@ -49,6 +49,9 @@ pnpm i package-cost
 
     Options:
       -c|--concurrency <count>  maximum count of parallel network requests (20)
+      -e|--extent none|all      an alias for the two options below
+      -n|--no-recurse           if the dependencies should not be traced
+      -a|--analyse-all          if sizes should be computed for all dependencies
       -j|--json                 format the results as JSON
       -v|--verbose              print progress details
       -V|--version              print version number
@@ -69,14 +72,15 @@ Arguments:
 * `refs`: NPM package references (array of strings)
 * `options`: optional object with parameters
   * `progress`: callback to call after estimating every NPM package
-  * `concurrency`: maximum count of parallel network requests (interegr, 20 by default)
+  * `concurrency`: maximum count of parallel network requests (integer, 20 by default)
+  * `extent`: if or how many dependencies should be printed (string, `none` or `all`)
   * `verbose`: print progress details (boolean, false by default)
 
 The `progress` callback is a `function(pkg, options)`:
 
 * `pkg`: object with package information
 * `options`: object with additional information
-  * `print`: prints a string to stdout - `function(string)` (console output is disabled when `estimatePkgs` is in progress)
+  * `print`: prints a string to stdout - `function(string)` (console output is disabled when `estimatePkgSizes` is in progress)
 
 A `pkg` object includes the following properties:
 

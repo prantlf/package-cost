@@ -3,14 +3,15 @@ export interface Pkg {
   version: string
   tarSize: integer
   rawSize: integer
-  bundleSize: integer
-  miniSize: integer
-  depCount: integer
+  bundleSize?: integer
+  miniSize?: integer
+  depCount?: integer
 }
 
 export interface Opts {
   progress?: (pkg: Pkg, opts: { print: (text: string) => void }) => void
   concurrency?: integer
+  extent?: 'none' | 'all'
   verbose?: boolean
 }
 

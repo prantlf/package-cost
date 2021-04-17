@@ -1,1 +1,1 @@
-janadom@0.1.2: 0 dependencies, 12.40 KiB packed, 63.92 KiB unpacked, 3.73 KiB bundled, 2.35 KiB minified
+janadom@0.1.2: 12.40 KiB packed, 63.92 KiB unpacked
