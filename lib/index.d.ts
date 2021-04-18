@@ -5,12 +5,15 @@ export interface Pkg {
   rawSize: integer
   bundleSize?: integer
   miniSize?: integer
+  gzipSize?: integer
+  deflateSize?: integer
+  brotliSize?: integer
   depCount?: integer
 }
 
 export interface Opts {
   progress?: (pkg: Pkg, opts: { print: (text: string) => void }) => void
-  concurrency?: integer
+  parallel?: integer
   extent?: 'none' | 'all'
   verbose?: boolean
 }

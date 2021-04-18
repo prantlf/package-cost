@@ -35,4 +35,4 @@
 [pack]  ignoring baretest@2.0.0:package/LICENSE
 [pack]  ignoring baretest@2.0.0:package/README.md
 [pack]  ignoring baretest@2.0.0:package/benchmarks/compare.yml
-[{"name":"baretest","version":"2.0.0","tarSize":6570,"rawSize":14958,"bundleSize":2051,"miniSize":1052,"depCount":1},{"name":"barecolor","version":"1.0.1","tarSize":1777,"rawSize":3279,"bundleSize":699,"miniSize":383,"depCount":0}]
+[{"name":"baretest","version":"2.0.0","tarSize":6570,"rawSize":14958,"bundleSize":2051,"miniSize":1052,"gzipSize":594,"deflateSize":582,"brotliSize":553,"depCount":1},{"name":"barecolor","version":"1.0.1","tarSize":1777,"rawSize":3279,"bundleSize":699,"miniSize":383,"gzipSize":296,"deflateSize":284,"brotliSize":263,"depCount":0}]

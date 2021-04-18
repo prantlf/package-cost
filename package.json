@@ -1,7 +1,7 @@
 {
   "name": "package-cost",
   "version": "0.2.0",
-  "description": "Gets NPM package size - packed, unpacked and script bundle - including dependencies recursively.",
+  "description": "Gets NPM package size - packed, unpacked, bundled, compressed - including dependencies recursively.",
   "homepage": "https://github.com/prantlf/package-cost#readme",
   "author": {
     "name": "Ferdinand Prantl",
@@ -34,7 +34,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "test": "mkdir -p test/actual && c8 node lib/bin && c8 --no-clean node lib/bin -V && c8 --no-clean node lib/bin -h && c8 --no-clean node lib/bin -x || c8 --no-clean node lib/bin -c c || c8 --no-clean node lib/bin -e e || c8 --no-clean node lib/bin @prantlf/none || c8 --no-clean node lib/bin --verbose @prantlf/none || c8 --no-clean node lib/bin -e none 'janadom@~0.1.0 || ~0.1.1' | sort > test/actual/janadom.txt && c8 --no-clean node lib/bin -n janadom@0.1.2 | sort > test/actual/janadom2.txt && c8 --no-clean node lib/bin -jv -c 5 -e all baretest@2.0.0 barecolor@1.0.1 baretest@2.0.0 | sort > test/actual/baretest.txt && c8 --no-clean node lib/bin -jv -c 5 -a baretest@2.0.0 barecolor@1.0.1 baretest@2.0.0 | sort > test/actual/baretest2.txt && c8 --no-clean node lib/bin -v test@0.6.0 | sort > test/actual/test.txt && c8 --no-clean node lib/bin.js janadom@git+https://github.com/prantlf/janadom.git && diff -q test/janadom.txt test/actual/janadom.txt && diff -q test/janadom.txt test/actual/janadom2.txt && diff -q test/baretest.txt test/actual/baretest.txt && diff -q test/baretest.txt test/actual/baretest2.txt && diff -q test/test.txt test/actual/test.txt && c8 --no-clean node test/test && c8 report -r text && c8 check-coverage"
+    "test": "mkdir -p test/actual && c8 node lib/bin && c8 --no-clean node lib/bin -V && c8 --no-clean node lib/bin -h && c8 --no-clean node lib/bin -x || c8 --no-clean node lib/bin -p p || c8 --no-clean node lib/bin -e e || c8 --no-clean node lib/bin @prantlf/none || c8 --no-clean node lib/bin --verbose @prantlf/none || c8 --no-clean node lib/bin -e none 'janadom@~0.1.0 || ~0.1.1' | sort > test/actual/janadom.txt && c8 --no-clean node lib/bin -n janadom@0.1.2 | sort > test/actual/janadom2.txt && c8 --no-clean node lib/bin -jv -p 5 -e all baretest@2.0.0 barecolor@1.0.1 baretest@2.0.0 | sort > test/actual/baretest.txt && c8 --no-clean node lib/bin -jv -p 5 -a baretest@2.0.0 barecolor@1.0.1 baretest@2.0.0 | sort > test/actual/baretest2.txt && c8 --no-clean node lib/bin -v test@0.6.0 | sort > test/actual/test.txt && c8 --no-clean node lib/bin.js janadom@git+https://github.com/prantlf/janadom.git && diff -q test/janadom.txt test/actual/janadom.txt && diff -q test/janadom.txt test/actual/janadom2.txt && diff -q test/baretest.txt test/actual/baretest.txt && diff -q test/baretest.txt test/actual/baretest2.txt && diff -q test/test.txt test/actual/test.txt && c8 --no-clean node test/test && c8 report -r text && c8 check-coverage"
   },
   "c8": {
     "reporter": [

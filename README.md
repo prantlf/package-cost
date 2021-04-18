@@ -5,7 +5,7 @@
 [![Dependency Status](https://david-dm.org/prantlf/package-cost.svg)](https://david-dm.org/prantlf/package-cost)
 [![devDependency Status](https://david-dm.org/prantlf/package-cost/dev-status.svg)](https://david-dm.org/prantlf/package-cost#info=devDependencies)
 
-Gets NPM package size - packed, unpacked and script bundle - including dependencies recursively. See [details about the sizes](#how-it-works).
+Gets NPM package size - packed, unpacked, bundled, compressed - including dependencies recursively. See [details about the sizes](#how-it-works).
 
 ## Synopsis
 
@@ -13,16 +13,19 @@ Gets NPM package size - packed, unpacked and script bundle - including dependenc
 $ package-cost plural-rules fast-plural-rules
 
 plural-rules@1.0.1:      0 dependencies, 52.89 KiB packed, 0.29 MiB unpacked,
-                         20.58 KiB bundled, 17.15 KiB minified
+                         20.58 KiB bundled, 17.15 KiB minified,
+                         3.62 KiB gzipped, 3.64 KiB deflated, 3.07 KiB brotlied
 fast-plural-rules@1.0.1: 0 dependencies, 27.36 KiB packed, 0.13 MiB unpacked,
-                         7.96 KiB bundled, 3.64 KiB minified
+                         7.96 KiB bundled, 3.64 KiB minified,
+                         1.28 KiB gzipped, 1.27 KiB deflated, 1.17 KiB brotlied
 ```
 
 ```js
 const estimatePkgSizes = require('package-cost')
 const pkgs = await estimatePkgSizes(['janadom@^0.1.0'])
 // [{"name":"janadom","version":"0.1.2","tarSize":12702,"rawSize":65449,
-//   "bundleSize":3815,"miniSize":2410,"depCount":0}]
+//   "bundleSize":3815,"miniSize":2410,"gzipSize":1088,"deflateSize":1076,
+//   "brotliSize":947,"depCount":0}]
 ```
 
 ## Installation
@@ -48,7 +51,7 @@ pnpm i package-cost
     Usage: package-cost [option ...] [package ...]
 
     Options:
-      -c|--concurrency <count>  maximum count of parallel network requests (20)
+      -c|--parallel <count>  maximum count of parallel network requests (10)
       -e|--extent none|all      an alias for the two options below
       -n|--no-recurse           if the dependencies should not be traced
       -a|--analyse-all          if sizes should be computed for all dependencies
@@ -72,7 +75,7 @@ Arguments:
 * `refs`: NPM package references (array of strings)
 * `options`: optional object with parameters
   * `progress`: callback to call after estimating every NPM package
-  * `concurrency`: maximum count of parallel network requests (integer, 20 by default)
+  * `parallel`: maximum count of parallel network requests (integer, 10 by default)
   * `extent`: if or how many dependencies should be printed (string, `none` or `all`)
   * `verbose`: print progress details (boolean, false by default)
 
@@ -90,6 +93,9 @@ A `pkg` object includes the following properties:
 * `rawSize`: size of the unpacked package in bytes (integer)
 * `bundleSize`: size of the main exported script with all dependencies (integer)
 * `miniSize`: the same as `bundleSize` but after minifying the script (integer)
+* `gzipSize`: size of the minified bundle after applying the gzip compression (integer)
+* `deflateSize`: size of the minified bundle after applying the deflate compression (integer)
+* `brotliSize`: size of the minified bundle after applying the brotli compression (integer)
 * `depCount`: count of the package dependencies (integer)
 
 There are [details about the sizes](#how-it-works) below.
@@ -102,14 +108,17 @@ NPM packages can be specified in any format that is recognised by `npm v`. They 
 2. Continue requesting the package information for the dependencies of the specified package and that recursively for the whole dependency tree.
 3. Collect sizes of tarballs for all requested NPM packages.
 4. Stream the tarballs from the network to memory, compute their unpacked sizes and store JavaScript and JSON files in memory.
-5. Run a JavaScript bundler against the main exported module of the initially specified package and compute the bundle raw and minified sizes.
+5. Run a JavaScript bundler against the main exported module of the initially specified package and compute the bundle raw, minified and compressed sizes.
 
 Collected sizes have the following meaning:
 
 * `tarSize`: Download size of the package including its dependencies. Measures the project installation overhead. Important for often build container starting in CI/CD pipelines.
 * `rawSize`: Unpacked size of the package including its dependencies. Measures the disk space overhead. Important for often container starting in CI/CD pipelines.
-* `bundleSize`: Size of the JavaScript bundle concatenated from the main package export and all its dependencies followed recursively. Measures the amount of JavaScript to be parsed. Important for the page loading performance.
-* `miniSize`: the same as `bundleSize` but after minifying the JavaScript bundle (integer)
+* `bundleSize`: Size of the JavaScript bundle concatenated from the main package export and all its dependencies followed recursively. Measures the amount of JavaScript to be parsed. Important for the application loading performance.
+* `miniSize`: The same as `bundleSize` but after minifying the JavaScript bundle.
+* `gzipSize`: Size of the minified JavaScript bundle after applying the gzip compression. Measures the browser download overhead. Important for the page loading performance.
+* `deflateSize`: The same as `gzipSize` but using the deflate compression.
+* `brotliSize`: The same as `gzipSize` but using the brotli compression.
 
 ## Contributing
 

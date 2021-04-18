@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/lib/bin.js",
-      "args": ["marko"],
+      "args": ["jest"],
       "skipFiles": [
         "<node_internals>/**"
       ]

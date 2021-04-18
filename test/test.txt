@@ -64,4 +64,4 @@
 [pack]  ignoring test@0.6.0:package/test/utils/.assert-report.js.un~
 [pack]  ignoring test@0.6.0:package/test/utils/.logger.js.un~
 [pack]  test@0.6.0: 0.15 MiB packed, 1.62 MiB unpacked, 11 scripts
-test@0.6.0: 1 dependency, 0.16 MiB packed, 1.64 MiB unpacked, 17.99 KiB bundled, 7.62 KiB minified
+test@0.6.0: 1 dependency, 0.16 MiB packed, 1.64 MiB unpacked, 17.99 KiB bundled, 7.62 KiB minified, 2.96 KiB gzipped, 2.95 KiB deflated, 2.70 KiB brotlied
