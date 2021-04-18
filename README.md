@@ -57,6 +57,8 @@ pnpm i package-cost
       -a|--analyse-all          if sizes should be computed for all dependencies
       -j|--json                 format the results as JSON
       -t|--table                format the results to a table
+      -s|--sort <column>        sort the table rows by values in a column
+      -d|--direction asc|desc   sort direction (asc by default)
       -v|--verbose              print progress details
       -V|--version              print version number
       -h|--help                 print usage instructions

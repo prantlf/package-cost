@@ -9,6 +9,7 @@
 * Let the operation be limited to the specified packages only without traversing their dependencies.
 * Let the operation print sizes for all package dependencies recursively.
 * Let the result be formatted in a table.
+* Let the table be sorted by a selected column.
 * Reduce the default parallelism to 10.
 * Rename `tarballSize` to `tarSize`.
 * Rename `unpackedSize` to `rawSize`.
