@@ -11,11 +11,16 @@ export interface Pkg {
   depCount?: integer
 }
 
-export interface Opts {
-  progress?: (pkg: Pkg, opts: { print: (text: string) => void }) => void
-  parallel?: integer
-  extent?: 'none' | 'all'
+export interface CommonOpts {
   verbose?: boolean
 }
 
-export default function estimatePkgSizes(refs: string[], opts?: Opts): Promise<Pkg[]>
+export interface Opts extends CommonOpts {
+  progress?: (pkg: Pkg, opts: { print: (text: string) => void }) => void
+  parallel?: integer
+  extent?: 'none' | 'all'
+}
+
+export function estimatePkgSizes(refs: string[], opts?: Opts): Promise<Pkg[]>
+export function cleanCache(opts?: CommonOpts): Promise<void>
+export function writeCache(opts?: CommonOpts): Promise<void>

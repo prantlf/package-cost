@@ -12,6 +12,7 @@
 [init]    ansi-font@0.0.2
 [init]  inspected test@0.6.0 (test.js)
 [init]  inspecting test@0.6.0
+[load]  loading cached references
 [pack]  analysing tarballs
 [pack]  ansi-font@0.0.2: 10.00 KiB packed, 17.11 KiB unpacked, 2 scripts
 [pack]  collecting ansi-font@0.0.2:index.js

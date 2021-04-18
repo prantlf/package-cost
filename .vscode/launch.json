@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/lib/bin.js",
-      "args": ["baretest", "test", "-t"],
+      "args": ["tap", "tape", "test", "ava", "uvu", "zora", "mocha", "chai", "jasmine", "baretest", "pta"],
       "skipFiles": [
         "<node_internals>/**"
       ]
