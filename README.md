@@ -56,6 +56,7 @@ pnpm i package-cost
       -n|--no-recurse           if the dependencies should not be traced
       -a|--analyse-all          if sizes should be computed for all dependencies
       -j|--json                 format the results as JSON
+      -t|--table                format the results to a table
       -v|--verbose              print progress details
       -V|--version              print version number
       -h|--help                 print usage instructions

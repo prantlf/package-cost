@@ -1,0 +1,2 @@
+janadom@0.1.2  0     12.40 KiB  63.92 KiB  3.73 KiB   2.35 KiB   1.06 KiB   1.05 KiB   947 B    
+package        deps  packed     unpacked   bundled    minified   gzipped    deflated   brotlied

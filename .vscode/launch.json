@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/lib/bin.js",
-      "args": ["jest"],
+      "args": ["baretest", "test", "-t"],
       "skipFiles": [
         "<node_internals>/**"
       ]
