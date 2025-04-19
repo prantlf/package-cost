@@ -1,6 +1,6 @@
 # Changes
 
-## 0.3.0
+## 0.3.0 (2021-04-19)
 
 * Let single-letter command-line argument chained in a single argument.
 * Compute size of the JavaScript bundle concatenated of the main module export and all its dependencies.
@@ -17,18 +17,18 @@
 * Rename `concurrency` to `parallel`.
 * Execute NPM as a child process. The programmatic interface changed between NPM 6 and 7.
 
-## 0.2.0
+## 0.2.0 (2021-04-12)
 
 Add typings.
 
-## 0.1.0
+## 0.1.0 (2021-04-11)
 
 Expose the package size estimation method as an API.
 
-## 0.0.2
+## 0.0.2 (2021-04-11)
 
 Add shebang to the binary script
 
-## 0.0.1
+## 0.0.1 (2021-04-11)
 
 Initial release.

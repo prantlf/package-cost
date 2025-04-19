@@ -46,8 +46,11 @@
     "statements": 100
   },
   "dependencies": {
-    "esbuild": "^0.11.12",
-    "tar-stream": "^2.2.0"
+    "esbuild": "^0.25.2",
+    "tar-stream": "^3.1.7"
+  },
+  "devDependencies": {
+    "c8": "^10.1.3"
   },
   "keywords": [
     "download-size",
@@ -58,8 +61,5 @@
     "package",
     "size",
     "cost"
-  ],
-  "devDependencies": {
-    "c8": "^7.7.1"
-  }
+  ]
 }

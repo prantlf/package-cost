@@ -39,4 +39,4 @@
 [save]  saving cached references
 [save]  writing barecolor@1.0.1
 [save]  writing baretest@2.0.0
-[{"name":"baretest","version":"2.0.0","tarSize":6570,"rawSize":14958,"bundleSize":2051,"miniSize":1052,"gzipSize":594,"deflateSize":582,"brotliSize":553,"depCount":1},{"name":"barecolor","version":"1.0.1","tarSize":1777,"rawSize":3279,"bundleSize":699,"miniSize":383,"gzipSize":296,"deflateSize":284,"brotliSize":263,"depCount":0}]
+[{"name":"baretest","version":"2.0.0","tarSize":6570,"rawSize":14958,"bundleSize":2309,"miniSize":1167,"gzipSize":671,"deflateSize":659,"brotliSize":595,"depCount":1},{"name":"barecolor","version":"1.0.1","tarSize":1777,"rawSize":3279,"bundleSize":866,"miniSize":470,"gzipSize":357,"deflateSize":345,"brotliSize":308,"depCount":0}]
