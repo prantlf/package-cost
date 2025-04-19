@@ -1,6 +1,6 @@
 {
   "name": "package-cost",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Gets NPM package size - packed, unpacked, bundled, compressed - including dependencies recursively.",
   "homepage": "https://github.com/prantlf/package-cost#readme",
   "author": {
